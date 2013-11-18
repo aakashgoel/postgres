@@ -842,6 +842,9 @@ fireASTriggers(ModifyTableState *node)
 			break;
 		case CMD_UPDATE:
 			ExecASUpdateTriggers(node->ps.state, node->resultRelInfo);
+            //TODO(ST):
+			// ExecASUpdateTriggers(node->ps.state, node->resultRelInfo,
+            // node->list);
 			break;
 		case CMD_DELETE:
 			ExecASDeleteTriggers(node->ps.state, node->resultRelInfo);
@@ -1014,6 +1017,8 @@ ExecModifyTable(ModifyTableState *node)
 				slot = ExecInsert(slot, planSlot, estate, node->canSetTag);
 				break;
 			case CMD_UPDATE:
+                // TODO(ST): for each exec update below, save a new pair of OLD
+                // and NEW ItemPointer values to the trigger queue
 				slot = ExecUpdate(tupleid, oldtuple, slot, planSlot,
 								&node->mt_epqstate, estate, node->canSetTag);
 				break;

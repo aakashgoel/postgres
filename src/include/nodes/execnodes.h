@@ -1087,6 +1087,11 @@ typedef struct ModifyTableState
 	List	  **mt_arowmarks;	/* per-subplan ExecAuxRowMark lists */
 	EPQState	mt_epqstate;	/* for evaluating EvalPlanQual rechecks */
 	bool		fireBSTriggers; /* do we need to fire stmt triggers? */
+    //TODO(ST):  list - Add a list of pairs of ItemPointers here!
+    // NUM_MODIFIED_ROWS = sizeof(list)
+    // API:
+    //  OLD.get(i).balance
+    //  NEW.get(i).balance
 } ModifyTableState;
 
 /* ----------------

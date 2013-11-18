@@ -2321,6 +2321,10 @@ ExecBSUpdateTriggers(EState *estate, ResultRelInfo *relinfo)
 	}
 }
 
+//TODO(ST): overload this method and write a new one for AfterTriggerSaveEvent
+// and write a new method that allows the trigger mechanism to read this
+// information off the queue and actually do what the trigger wants (that might
+// require interfering with the SQL paths).
 void
 ExecASUpdateTriggers(EState *estate, ResultRelInfo *relinfo)
 {
